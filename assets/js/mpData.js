@@ -1,4 +1,4 @@
-const mpLinks = ['yearbook', 'fundraising', 'calendar']
+const mpLinks = ['yearbook', 'fundraising', 'catalogFundraiser', 'meeting', 'art', /*'calendar'*/]
 
 const calendarItems = [
     {
