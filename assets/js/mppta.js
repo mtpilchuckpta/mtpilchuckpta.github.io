@@ -1,7 +1,13 @@
 onload = () => {
+    generateMenuItems(codeGenerationData)
+    Promise.all(getHighlightsHtml(enteredSiteCategoryData)).then(returnedHtmls => {
+        document.querySelector('#highlights').innerHTML = returnedHtmls.join('\n')    
+    })
+    //generateMenuLinks();
+    //insertSectionOverviews();
     //generateCalendarTable();
-    generateArtLessonTable();
-    generateMenuLinks();
+    //generateArtLessonTable();
+    
     if (window.location.hash.startsWith('#')) {
         const jumpTo = window.location.hash.split('#')[1];
         displaySection(jumpTo);
@@ -13,7 +19,7 @@ onload = () => {
 }
 
 const generateMenuLinks = () => {
-    mpLinks.forEach(link => {
+    sections.filter(section => section.isActive).forEach(section => {
         const newMenuItem = `<li><a href=javascript:displaySection("${link}")>${capFirst(link)}</a></l>`
         document.querySelector('#quickLinks').innerHTML += newMenuItem; 
     });
