@@ -19,15 +19,15 @@ const generateHighlight = (data, overviewHtml) => {
 	const missingMessage = `<!-- Expected but did not find well-formed ${data.name}-overview.html file in assets/content. 
 		If ${data.name} should be in a highlight square, add or check /assets/content/${data.name}-overview.html -->`
 	
-	const isExternal = Boolean(data.externalLink)
-	const link = isExternal ? data.externalLink: `javascript:displaySection(${data.name}Section);`
+	const isExternalLink = Boolean(data.externalLink)
+	const link = isExternalLink ? data.externalLink: `javascript:displaySection(${data.name}Section);`
 
 	return `<section id="${data.name}">
   <div class="content">
     <header>
-	  <a  href="${data.link}"
+	  <a  href="${link}"
 	      ${Boolean(data.icon) ? 'class="icon ' + data.icon + '" ': ''}
-		  target="${data.linkIsExternal? '_blank': '_self'}">
+		  target="${isExternalLink? '_blank': '_self'}">
 		<h3>${data.displayName}</h3>
       </a>
     </header>
@@ -38,18 +38,18 @@ const generateHighlight = (data, overviewHtml) => {
 </section>
 ` }
 
-const loadSection = (sectionName) => {
-	const detailsBlock = document.querySelector('#detailBlock') 
+const loadDetails = (categoryName) => {
+	const detailsBlock = document.querySelector('#detailsBlock') 
 
-	if (!Boolean(sectionName)) {
+	if (!Boolean(categoryName)) {
 		detailsBlock.style.display = 'none'
 		document.documentElement.scrollTop = 0;
 		detailsBlock.innerHTML = '';
 		return;
 	}
 
-	const detailsFilename = `/assets/content/${sectionName}-details.html`
-		
+	// const detailsFilename = `/assets/content/${categoryName}-details.html`
+	const detailsFilename = `http://kloz4kidz.org/contact.html`	
 	fetchHtmlFromFile(detailsFilename).then(html => {
 		detailsBlock.innerHTML = html;
 		detailsBlock.style.display = 'block';
@@ -57,12 +57,9 @@ const loadSection = (sectionName) => {
 	});
 }
 
-const isExternal = (link) => link?.startsWith('http')
-
 async function fetchHtmlFromFile(filename) {
 	if (window.location.href.startsWith('file')) {
-		console.log('load from file')
-		return '<div>need to load from file</div>'
+		return yearbookContent;
 	}
 	const response = await fetch(filename);
 	if (response.status === 200) {
