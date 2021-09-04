@@ -24,7 +24,7 @@ const enteredSiteCategoryData = [
         isActive: true,
         isHighlight: true,
         icon: 'fa-group',
-        externalLink: '',
+        externalLink: 'https://checkout.square.site/merchant/MHGQ67NFJWQ1F/checkout/EYXNOHXVUJYCBEYDB5ADBPJK',
     },
     {
         name: 'yearbook',
@@ -72,5 +72,7 @@ const codeGenerationData = enteredSiteCategoryData.map(category => ({
     linkIsExternal: Boolean(category.externalLink),
     link: Boolean(category.externalLink) ? 
         category.externalLink: 
-        `javascript:loadDetails(${category.name});`,
+        `javascript:loadDetails('${category.name}');`,
 }))
+
+const localSiteLocation = '/~jmr/mtpilchuckpta.github.io';

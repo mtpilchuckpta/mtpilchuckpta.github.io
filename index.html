@@ -16,7 +16,7 @@
 
 <body class="is-preload" onload="onLoad()">
 	<header id="header">
-		<a class="logo" href="javascript:displaySection('');"><i class="icon fa-paw">&nbsp;</i></a>
+		<a class="logo" href="javascript:loadDetails('');"><i class="icon fa-paw">&nbsp;</i></a>
 		<nav>
 			<a href="#menu">Menu</a>
 		</nav>
@@ -25,7 +25,7 @@
 	<!-- Nav -->
 	<nav id="menu">
 		<ul id="quickLinks" class="links">
-			<li><a href="javascript:displaySection('');">Home</a></li>
+			<li><a href="javascript:loadDetails('');">Home</a></li>
 		</ul>
 	</nav>
 
@@ -43,28 +43,21 @@
 	<!-- Main Content -->
 	<section class="wrapper">
 		<div class="inner">
-			<header class="special">
-				<h2>We connect you</h2>
-				<p>Our primary goal as a PTA is to connect you -- the parents, students, and staff of Mt Pilchuck Elementary School.  
-					We all have something to contribute and together we make possible a positive community at our school.</p>
+			<header id="welcome-text" class="special">
+				<!-- content here is dynamically generated from /assets/content/page-content/welcome-text.html -- see README.md -->
 			</header>
 		</div>
 
 		<div class="inner">
 			<div id="highlights">
-
-				
+				<!-- content here is dynamically generated from /assets/content/category-highlights/<category>-highlights.html -- see README.md -->
 			</div>
 		</div>
 	</section>
 	<div id="detailsBlock"></div>
+		<!-- content here is dynamically generated from /assets/content/category-highlights/<category>-details.html -- see README.md -->
 
-	
-
-	
-
-	
-
+			
 	<!-- Links -->
 	<section id="links">
 		<div class="inner">
@@ -138,6 +131,4 @@
 	
 	<script src="assets/js/page-content-definitions.js"></script>
 	<script src="assets/js/page-content-generation.js"></script>
-	<script src="assets/content/yearbook-overview.js"></script>
-
 </html>

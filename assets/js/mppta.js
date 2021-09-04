@@ -1,46 +1,18 @@
 onload = () => {
+    insertWelcomeText();
     generateMenuItems(codeGenerationData)
     Promise.all(getHighlightsHtml(enteredSiteCategoryData)).then(returnedHtmls => {
-        document.querySelector('#highlights').innerHTML = returnedHtmls.join('\n')    
-    })
-    //generateMenuLinks();
-    //insertSectionOverviews();
-    //generateCalendarTable();
-    //generateArtLessonTable();
-    
-    if (window.location.hash.startsWith('#')) {
-        const jumpTo = window.location.hash.split('#')[1];
-        displaySection(jumpTo);
-    }
-    else {
-        displaySection('');     // hides all extra information
-    }
-    
-}
-
-const generateMenuLinks = () => {
-    sections.filter(section => section.isActive).forEach(section => {
-        const newMenuItem = `<li><a href=javascript:displaySection("${link}")>${capFirst(link)}</a></l>`
-        document.querySelector('#quickLinks').innerHTML += newMenuItem; 
-    });
-}
-
-// displays extra information for named section
-// hides all other information for sections other than named section
-const displaySection = (sectionName) => {
-    const sections = document.querySelectorAll('.extraSection');
-    sections.forEach(section => {
-        console.log(`section has id: ${section.id}`)
-        section.style.display = "none";
-    });
-    const section = document.getElementById(`${sectionName}Section`);
-    if (section) {
-        section.style.display = 'block';
-        section.scrollIntoView();    
-    }
-    else {
-       document.documentElement.scrollTop = 0;
-    }
+        document.querySelector('#highlights').innerHTML = returnedHtmls.join('\n')
+        Promise.resolve();
+    }).then(() => {
+        if (window.location.hash.startsWith('#')) {
+            const jumpTo = window.location.hash.split('#')[1];
+            loadDetails(jumpTo);
+        }
+        else {
+            loadDetails('');     // hides all extra information
+        }
+    })    
 }
 
 const showEmailForm = () => {
