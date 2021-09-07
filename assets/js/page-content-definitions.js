@@ -28,46 +28,47 @@ const enteredSiteCategoryData = [
     },
     {
         name: 'yearbook',
-        isActive: true, 
+        isActive: false, 
         isHighlight: true,
         displayName: 'Yearbook',
         icon: 'fa-group'
     },
-    // {
-    //     name: 'fundraising',
-    //     isActive: true, 
-    //     isHighlight: false,
-    //     displayName: 'Support',
-    //     icon: 'fa-group'
-    // },
-    // {
-    //     name: 'volunteer',
-    //     isActive: true, 
-    //     isHighlight: true,
-    //     displayName: 'Volunteer',
-    //     icon: 'fa-group'
-    // },
-    // {
-    //     name: 'art',
-    //     isActive: true, 
-    //     isHighlight: false,
-    //     displayName: 'Art',
-    //     icon: 'fa-group'
-    // },
-    // {
-    //     name: 'calendar',
-    //     isActive: true, 
-    //     isHighlight: true,
-    //     displayName: 'Calendar',
-    //     icon: 'fa-group'
-    // },
+    {
+        name: 'fundraising',
+        isActive: true, 
+        isHighlight: false,
+        displayName: 'Support',
+        icon: 'fa-group'
+    },
+    {
+        name: 'volunteer',
+        isActive: true, 
+        isHighlight: true,
+        displayName: 'Volunteer',
+        icon: 'fa-group',
+        externalLink: 'https://www.signupgenius.com/index.cfm?go=c.SignUpSearch&eid=08C3C0D7FDC9F765&cs=09CBBADC8FCD8B627B7B640E5BC19BCB&sortby=l.title',
+    },
+    {
+        name: 'art',
+        isActive: false, 
+        isHighlight: false,
+        displayName: 'Art',
+        icon: 'fa-group'
+    },
+    {
+        name: 'calendar',
+        isActive: false, 
+        isHighlight: true,
+        displayName: 'Calendar',
+        icon: 'fa-group'
+    },
 ]
 
 
 // ==============  END ENTER CATEGORY INFORMATION ========
 
 
-const codeGenerationData = enteredSiteCategoryData.map(category => ({
+const codeGenerationData = enteredSiteCategoryData.filter(category => category.isActive).map(category => ({
     ...category,
     linkIsExternal: Boolean(category.externalLink),
     link: Boolean(category.externalLink) ? 
